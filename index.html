@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<div class="row">
+    <div class="col-md-3 mt-3 bg-light p-3">
+        <h5>Filter by Category</h5>
+        <hr>
+        <p><a href="/home" class="anchor">All</a></p>
+        <p><a href="/catfilter/1" class="anchor">History</a></p>
+        <p><a href="/catfilter/2" class="anchor">Political science and international relations</a></p>
+        <p><a href="/catfilter/3" class="anchor">Economics</a></p>
+        <P><a href="/catfilter/4" class="anchor">Geography</a></P>
+        <h5>Filter by Price</h5>
+        <hr>
+        <form method="GET" action="/range">
+            <div class="mb-3">
+                <label for="input1" class="form-label">Min:</label>
+                <input type="number" class="form-control" id="input1" name="umin" placeholder="min price">
+            </div>
+            <div class="mb-3">
+                <label for="input2" class="form-label">Max:</label>
+                <input type="number" class="form-control" id="input2" name="umax" placeholder="max price">
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-danger" value="Search">
+            </div>
+           </form> 
+        <h5 class="mt-2">Sort by Price</h5>
+        <hr>
+        <p><a href="/sort/1" class="anchor">High to Low</a></p>
+        <p><a href="/sort/0" class="anchor">Low to High</a></p>
+    </div> <!-- end of side bar-->
+    
+    <div class="col-md-9 mt-3 bg-light p-3">
+      <div class="row">
+        {% for x in products %}
+         <div class="col-md-3">
+            <div class="card" style="width: 100%;">
+                <img src="{{x.pimage.url}}" class="card-img-top"width="20%"height="20%" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{x.name}}</h5>
+                  <p class="card-text">Rs.{{x.price}}</p>
+                  {% if x.cat == 1 %}
+                      <p class="card-text">History</p>
+                  {% elif x.cat == 2 %}
+                      <p class="card-text">Political science and international relations</p>
+                  {% elif x.cat == 3 %}
+                      <p class="card-text">Economics</p>
+                  {% else %}
+                      <p class="card-text">Geography</p> 
+                  {% endif %}    
+
+                  <a href="/pdetails/{{x.id}}" class="btn btn-danger">Product Details</a>
+                </div>
+              </div>
+          </div> <!-- product1-->
+          {% endfor %}
+      </div> <!-- end of product list-->
+    </div>
+    </div> 
+    {% endblock 'main' %}

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+    <h1>Templates as response</h1>
+    Profile Name:<h4>{{name}}</h4>
+    city:<h4>{{city}}</h4>
+    {% if x > y %}
+        <p>{{x}} is greater</p>
+    {% else %}
+        <p>{{y}} is greater</p>
+    {% endif %}
+
+    <h5>List elements are:</h5>
+    {% for x in list %}
+        <p>{{x}}</p>
+    {% endfor %}
+
+    <h5>Product:</h5>
+    {% for x in product %}
+        <strong>{{forloop.counter}}</strong>&nbsp; 
+        <strong>Name:</strong>{{x.name}}&nbsp;&nbsp;
+        <strong>Cat:</strong>{{x.cat}}
+    {% endfor %}
+ <hr>
+  <button onclick="display()">Click me</button>
+  <img src="{% static 'images/image1.jpg' %}"alt="">
+
+</body>
+</html>
